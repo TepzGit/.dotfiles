@@ -32,3 +32,8 @@ vim.keymap.set({"n", "i", "v"}, "<S-Up>", "<C-b>zz", { noremap = true, silent = 
 vim.keymap.set({"n", "i", "v"}, "<S-Down>", "<C-f>zz", { noremap = true, silent = true })
 vim.keymap.set({"n", "i", "v"}, "<C-b>", "<C-b>zz", { noremap = true, silent = true })
 vim.keymap.set({"n", "i", "v"}, "<C-f>", "<C-f>zz", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<Tab>", ":tabn<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<S-Tab>", ":tabp<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-t>", ":tabe<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-t>", ":tabe<CR>", { noremap = true, silent = true })
