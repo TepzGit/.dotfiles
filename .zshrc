@@ -142,5 +142,5 @@ fi
 alias vi=nvim
 alias viconf="nvim ~/.config/nvim/lua/Tepz"
 alias c="xclip -selection clipboard"
-export PATH=$PATH:/usr/sbin:$(echo ~)/Scripts/Scripts
+export PATH=$PATH:$(echo ~)/Scripts/Scripts
 export QT_QPA_PLATFORMTHEME=qt6ct
