@@ -31,12 +31,13 @@ markup=none
 
 [spotify]
 command=$SCRIPT_DIR/spotify/spotify_info.sh
-interval=1
+interval=repeat
 
 # Volume indicator
 [volume]
 command=$SCRIPT_DIR/volume/volume
 interval=once
+signal=2
 #color=#f70505
 
 # Memory usage

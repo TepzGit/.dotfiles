@@ -12,18 +12,16 @@ print_song_info() {
 get_and_print_song_info() {
 	title=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'Metadata' | grep title -C 1 | grep variant | cut -d '"' -f 2)
 	artist=$(dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'Metadata' | grep xesam:albumArtist -C 2 | grep string |tail -1 | cut -d '"' -f 2)
-	echo -e "\uf1bc $artist - $title"
-	echo ""
-	#echo "#1DB954"
-	echo "#00FF00"
 
+	if [[ $artist == "" ]] && [[ $title == "" ]];then
+		echo ""
+	else
+		echo -e "\uf1bc $artist - $title"
+		echo ""
+		#echo "#1DB954"
+		echo "#00FF00"
+	fi
 }
-
-#dbus-monitor destination=org.mpris.MediaPlayer2.spotify path=/org/mpris/MediaPlayer2 interface=org.freedesktop.DBus.Properties member=PropertiesChanged | while read line;do
-#	if [[ $line ==  *"PlaybackStatus"* ]]; then
-#		echo $line
-#	fi
-#done &
 
 i=0
 title=""
@@ -34,12 +32,12 @@ found_title=false
 found_artist=false
 already_echoed=false
 playback_status_changed=false
+skip=false
 
-dbus-monitor destination=org.mpris.MediaPlayer2.spotify member=PropertiesChanged type=signal path=/org/mpris/MediaPlayer2 interface=org.freedesktop.DBus.Properties | while read line; do
+dbus-monitor destination=org.mpris.MediaPlayer2.spotify member=PropertiesChanged type=signal path=/org/mpris/MediaPlayer2 interface=org.freedesktop.DBus.Properties | while read -r line; do
 	if [[ $line == *"Metadata"* ]]; then
 		inside_metadata=true
 	fi
-
 
 	if [[ $inside_metadata == true ]]; then
 		if [[ $found_title == true ]]; then
@@ -73,14 +71,21 @@ dbus-monitor destination=org.mpris.MediaPlayer2.spotify member=PropertiesChanged
 
 		if [[ $status == "Paused" ]];then
 			echo ""
+			kill $$
 			exit
 		elif [[ $status == "Playing" ]]; then
 			get_and_print_song_info
+			kill $$
 			exit
 		fi
 	fi
 
 	if [[ $line == *'string "PlaybackStatus"'* ]];then
 		playback_status_changed=true
+	fi
+
+	if [[ $line == *"member='Disconnected'"* ]];then
+		echo ""
+		exit
 	fi
 done
