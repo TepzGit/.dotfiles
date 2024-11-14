@@ -33,8 +33,13 @@ found_artist=false
 already_echoed=false
 playback_status_changed=false
 skip=false
+spotify_closed=false
 
-dbus-monitor --session "type='signal',sender='org.mpris.MediaPlayer2.spotify',member='PropertiesChanged',interface='org.freedesktop.DBus.Properties',path='/org/mpris/MediaPlayer2'" | while read -r line; do
+#signal time=1731605715.448632 sender=org.freedesktop.DBus -> destination=(null destination) serial=4294967295 path=/org/freedesktop/DBus; interface=org.freedesktop.DBus; member=NameOwnerChanged
+#   string "org.mpris.MediaPlayer2.spotify"
+
+
+dbus-monitor --session "type='signal',sender='org.mpris.MediaPlayer2.spotify',member='PropertiesChanged',interface='org.freedesktop.DBus.Properties',path='/org/mpris/MediaPlayer2'" member='NameOwnerChanged' | while read -r line; do
 	if [[ $line == *"Metadata"* ]]; then
 		inside_metadata=true
 	fi
@@ -85,8 +90,14 @@ dbus-monitor --session "type='signal',sender='org.mpris.MediaPlayer2.spotify',me
 		playback_status_changed=true
 	fi
 
-	if [[ $line == *"member='Disconnected'"* ]];then
+	if [[ $spotify_closed == true ]] && [[ $line ==  *'string "org.mpris.MediaPlayer2.spotify"'* ]];then
+		spotify_closed=false
 		echo ""
+		kill $$
 		exit
+	fi
+
+	if [[ $line == *"member=NameOwnerChanged"* ]];then
+		spotify_closed=true
 	fi
 done
