@@ -34,7 +34,7 @@ already_echoed=false
 playback_status_changed=false
 skip=false
 
-dbus-monitor destination=org.mpris.MediaPlayer2.spotify member=PropertiesChanged type=signal path=/org/mpris/MediaPlayer2 interface=org.freedesktop.DBus.Properties | while read -r line; do
+dbus-monitor --session "type='signal',sender='org.mpris.MediaPlayer2.spotify',member='PropertiesChanged',interface='org.freedesktop.DBus.Properties',path='/org/mpris/MediaPlayer2'" | while read -r line; do
 	if [[ $line == *"Metadata"* ]]; then
 		inside_metadata=true
 	fi
@@ -53,6 +53,7 @@ dbus-monitor destination=org.mpris.MediaPlayer2.spotify member=PropertiesChanged
 			found_title=false
 			found_artist=false
 			print_song_info "$artist" "$title"
+			kill $$
 			exit
 		fi
 
