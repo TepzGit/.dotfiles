@@ -5,7 +5,7 @@ dimensions = { columns = 110, lines = 28 }
 [font]
 normal = { family = "Hack", style = "Regular" }
 
-[shell]
+[terminal.shell]
 program = "tmux"
 
 [colors.primary]
