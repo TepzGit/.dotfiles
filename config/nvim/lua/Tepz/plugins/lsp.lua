@@ -16,10 +16,11 @@ cmp.setup({
     {name = 'nvim_lsp'},
   },
   mapping = cmp.mapping.preset.insert({
-    -- Enter key confirms completion item
     ['<CR>'] = cmp.mapping.confirm({select = false}),
-
-    -- Ctrl + space triggers completion menu
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
+    --['<C-p>'] = cmp.mapping.select_prev_item(),
+    --['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-Space>'] = cmp.mapping.complete(),
   }),
   snippet = {

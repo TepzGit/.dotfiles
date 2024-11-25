@@ -25,8 +25,8 @@ require("lazy").setup({
 	"ellisonleao/gruvbox.nvim",
 	"nvim-lua/plenary.nvim",
 	"nvim-telescope/telescope.nvim",
-	"mg979/vim-visual-multi",
 	"windwp/nvim-autopairs",
 	"kylechui/nvim-surround",
 	"ThePrimeagen/vim-be-good",
+	"L3MON4D3/LuaSnip",
 })
