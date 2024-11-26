@@ -54,6 +54,10 @@ command=$SCRIPT_DIR/temperature/temperature
 command_striped=$(echo "$command" | tr -d "°C" | cut -d "." -f 1)
 interval=10
 
+[battery]
+command=$SCRIPT_DIR/battery/battery.sh
+interval=10
+
 # Date Time
 [time]
 command=date '+%d-%m-%Y %a %H:%M'
