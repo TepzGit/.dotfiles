@@ -12,3 +12,8 @@ elif [[ $capacity -ge 25 ]] && [[ $capacity -lt 50 ]];then
 elif [[ $capacity -ge 1 ]] && [[ $capacity -lt 25 ]];then
 	echo " $capacity%"
 fi
+
+if [[ $status == "Charging" ]];then
+	echo ""
+	echo "#00ffff"
+fi
