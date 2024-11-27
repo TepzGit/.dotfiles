@@ -11,8 +11,8 @@ vim.keymap.set("v", "<C-J>", ":m '>+1<CR>gv=gv", { noremap = true, silent = true
 vim.keymap.set("v", "<C-K>", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("i", "<C-K>", "<Esc>:m .-2<CR>==gi", { noremap = true, silent = true })
 vim.keymap.set("i", "<C-J>", "<Esc>:m .+1<CR>==gi", { noremap = true, silent = true })
---vim.keymap.set("n", "<C-K>", ":m .-2<CR>==", { noremap = true, silent = true })
---vim.keymap.set("n", "<C-J>", ":m .+1<CR>==", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-K>", ":m .-2<CR>==", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-J>", ":m .+1<CR>==", { noremap = true, silent = true })
 
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
