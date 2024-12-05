@@ -5,6 +5,7 @@ require("Tepz.plugins.lsp")
 require("Tepz.plugins.telescope")
 require("Tepz.plugins.autopair")
 require("Tepz.plugins.surround")
+require("Tepz.plugins.nvim-ts-autotag")
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
