@@ -28,6 +28,5 @@ require("lazy").setup({
 	"windwp/nvim-autopairs",
 	"kylechui/nvim-surround",
 	"ThePrimeagen/vim-be-good",
-	"L3MON4D3/LuaSnip",
 	"windwp/nvim-ts-autotag",
 })
