@@ -58,6 +58,8 @@ func main() {
 				}
 			}
 			running_device = next_sink
+		case "1":
+			exec.Command("bash", "-c", "pavucontrol").Run()
 		}
 
 	}
