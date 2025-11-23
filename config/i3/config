@@ -219,6 +219,7 @@ bindsym $mod+r mode "resize"
 # Custom Hotkeys
 bindsym Print exec flameshot gui
 
+
 # Custom startups
 #smart_gaps on
 #gaps inner 5
@@ -230,8 +231,8 @@ exec_always --no-startup-id picom
 exec_always --no-startup-id setxkbmap us
 exec --no-startup-id feh --bg-scale ~/Pictures/Wallpaper.jpeg
 exec --no-startup-id nvidia-settings --load-config-only
-exec --no-startup-id sleep 2; redshift -P -O 4500
-exec --no-startup-id xrandr --output DP-0 --mode 1920x1080 --rate 144
+exec --no-startup-id sleep 2; redshift -m randr -P -O 4500
+exec --no-startup-id xrandr --output DP-0 --mode 1920x1080 --rate 240 --left-of HDMI-0 --primary --output HDMI-0 --mode 1920x1080 --rate 60
 exec_always --no-startup-id for id in $(xinput list | grep "pointer" | cut -d '=' -f 2 | cut -f 1); do xinput --set-prop $id "libinput Accel Profile Enabled" 0, 1; done
 exec_always --no-startup-id dunst
 
