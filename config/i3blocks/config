@@ -29,9 +29,9 @@ command=$SCRIPT_DIR/$BLOCK_NAME
 separator_block_width=20
 markup=none
 
-[spotify]
-command=$SCRIPT_DIR/spotify/spotify_info.sh
-interval=repeat
+#[spotify]
+#command=$SCRIPT_DIR/spotify/spotify_info.sh
+#interval=repeat
 
 # Volume indicator
 [volume]
@@ -51,11 +51,12 @@ color=#00FF00
 # Temperature
 [temperature]
 command=$SCRIPT_DIR/temperature/temperature
+command_striped=$(echo "$command" | tr -d "°C" | cut -d "." -f 1)
 interval=10
 
-#[battery]
-#command=$SCRIPT_DIR/battery/battery.sh
-#interval=10
+[battery]
+command=$SCRIPT_DIR/battery/battery.sh
+interval=10
 
 # Date Time
 [time]
