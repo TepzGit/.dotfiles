@@ -216,9 +216,16 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+set $main DP-0
+set $side HDMI-0
+
+workspace 1 output $main
+workspace 2 output $side
+
 # Custom Hotkeys
 bindsym Print exec flameshot gui
-
+bindsym KP_Insert  workspace number $ws1; workspace number $ws9; workspace number $ws2;workspace number $ws10
+bindsym $mod+Shift+m move workspace to output right
 
 # Custom startups
 #smart_gaps on
@@ -240,6 +247,7 @@ exec_always --no-startup-id dunst
 # finds out, if available)
 bar {
         status_command SCRIPT_DIR=~/.config/i3blocks/scripts i3blocks
+	tray_output DP-0
 	#i3bar_command i3bar -t
 	colors {
 	#background #00000000
