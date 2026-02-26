@@ -227,6 +227,13 @@ bindsym Print exec flameshot gui
 bindsym KP_Insert  workspace number $ws1; workspace number $ws9; workspace number $ws2;workspace number $ws10
 bindsym $mod+Shift+m move workspace to output right
 
+bindsym KP_End exec "pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -SIGRTMIN+2 i3blocks"
+bindsym KP_Down exec "pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -SIGRTMIN+2 i3blocks"
+
+bindsym KP_Left exec "~/.config/i3/scripts/brightness_change.sh - 0.05"
+bindsym KP_Begin exec "~/.config/i3/scripts/brightness_change.sh + 0.05"
+bindsym KP_Right exec "~/.config/i3/scripts/brightness_change.sh reset"
+
 # Custom startups
 #smart_gaps on
 #gaps inner 5
