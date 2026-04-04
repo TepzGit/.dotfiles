@@ -2,6 +2,8 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+setopt NO_BEEP
+
 setopt autocd              # change directory just by typing its name
 setopt interactivecomments # allow comments in interactive mode
 setopt magicequalsubst     # enable filename expansion for arguments of the form ‘anything=expression’
@@ -142,5 +144,5 @@ fi
 alias vi=nvim
 alias viconf="nvim ~/.config/nvim/lua/Tepz"
 alias c="xclip -selection clipboard"
-export PATH=$PATH:$(echo ~)/Scripts/Scripts
+export PATH=$PATH:$(echo ~)/Scripts/Scripts:~/.cargo/bin
 export QT_QPA_PLATFORMTHEME=qt6ct
