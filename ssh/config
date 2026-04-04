@@ -1,0 +1,30 @@
+Host Server
+	HostName 192.168.1.81
+	User Tepz
+	IdentityFile ~/.ssh/server
+	Port 22
+
+Host ServerPub
+	HostName 192.168.1.81
+	User Tepz
+	IdentityFile ~/.ssh/server
+	Port 5555
+
+Host Main
+	HostName 192.168.1.12
+	User Tepz
+	IdentityFile ~/.ssh/server
+	Port 22
+
+Host github.com
+	HostName github.com
+	User git
+	IdentityFile ~/.ssh/github
+	Port 22
+
+
+Host AzaanPC
+	HostName 192.168.1.74
+	User moha9
+	IdentityFile ~/.ssh/server
+	Port 22
