@@ -222,6 +222,12 @@ set $side HDMI-0
 workspace 1 output $main
 workspace 2 output $side
 
+
+# Disable X11 screen blanking and DPMS
+exec --no-startup-id xset s off
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s noblank
+
 # Custom Hotkeys
 bindsym Print exec flameshot gui
 bindsym KP_Insert  workspace number $ws1; workspace number $ws9; workspace number $ws2;workspace number $ws10
@@ -230,9 +236,12 @@ bindsym $mod+Shift+m move workspace to output right
 bindsym KP_End exec "pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -SIGRTMIN+2 i3blocks"
 bindsym KP_Down exec "pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -SIGRTMIN+2 i3blocks"
 
-bindsym KP_Left exec "~/.config/i3/scripts/brightness_change.sh - 0.05"
-bindsym KP_Begin exec "~/.config/i3/scripts/brightness_change.sh + 0.05"
+bindsym KP_Left exec "~/.config/i3/scripts/brightness_change.sh - 0.05;"
+bindsym KP_Begin exec "~/.config/i3/scripts/brightness_change.sh + 0.05;"
 bindsym KP_Right exec "~/.config/i3/scripts/brightness_change.sh reset"
+
+#bindsym $mod+Shift+v exec 'current_layout=$(setxkbmap -query | grep layout | cut -d " " -f 6); if [ $current_layout == "us" ];then;setxkbmap dk;else; setxkbmap us;fi'
+bindsym $mod+Shift+v exec bash -c "setxkbmap -query | grep -q 'layout:.*us' && setxkbmap dk || setxkbmap us && pkill -SIGRTMIN+3 i3blocks"
 
 # Custom startups
 #smart_gaps on
