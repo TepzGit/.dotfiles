@@ -236,9 +236,9 @@ bindsym $mod+Shift+m move workspace to output right
 bindsym KP_End exec "pactl set-sink-volume @DEFAULT_SINK@ -5% && pkill -SIGRTMIN+2 i3blocks"
 bindsym KP_Down exec "pactl set-sink-volume @DEFAULT_SINK@ +5% && pkill -SIGRTMIN+2 i3blocks"
 
-bindsym KP_Left exec "playerctl -p spotify next"
-bindsym KP_Begin exec "playerctl -p spotify previous"
-bindsym KP_Right exec "playerctl -p spotify play-pause"
+bindsym KP_Left exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+bindsym KP_Begin exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+bindsym KP_Right exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
 
 #bindsym $mod+Shift+v exec 'current_layout=$(setxkbmap -query | grep layout | cut -d " " -f 6); if [ $current_layout == "us" ];then;setxkbmap dk;else; setxkbmap us;fi'
 bindsym $mod+Shift+v exec bash -c "setxkbmap -query | grep -q 'layout:.*us' && setxkbmap dk || setxkbmap us && pkill -SIGRTMIN+3 i3blocks"
