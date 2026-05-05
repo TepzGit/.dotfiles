@@ -4,13 +4,11 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"strconv"
 	"strings"
 )
 
 func main() {
 	var running_device int
-//	states,err := exec.Command("bash", "-c", "pactl list sinks | grep State").Output()
 	sinks,err :=  exec.Command("bash", "-c", "pactl list short sinks").Output()
 	sinks_inputs,err :=  exec.Command("bash", "-c", "pactl list short sink-inputs").Output()
 	default_sink,_ := exec.Command("bash", "-c", "pactl info | grep 'Default Sink' | cut -d ' ' -f 3").Output()
@@ -23,15 +21,6 @@ func main() {
 			}
 		}
 	}
-
-//	for i,state := range strings.Split(string(states), "\n") {
-//		line := strings.Split(state, ":")
-//		s := strings.Trim(line[len(line) - 1], " ")
-//		if s == "RUNNING" {
-//			running_device = i
-//			break
-//		}
-//	}
 
 
 	block_button,bool := os.LookupEnv("BLOCK_BUTTON")
@@ -71,18 +60,5 @@ func main() {
 	}
 	
 	Volume := strings.Split(string(Volumes), "\n")[running_device]
-	Volume_int,_ := strconv.Atoi(strings.Trim(Volume, "%"))
-	var icon string
-	if Volume_int < 1 {
-		icon = "\uf6a9"
-	} else if Volume_int <= 50 {
-		icon = "\uf027"
-	} else if Volume_int > 50 {
-		icon = "\uf028"
-	}
-	//names,err :=  exec.Command("bash", "-c", "pactl list sinks | grep Description | cut -d ':' -f 2 | cut -c2-").Output()
-	//names_split := strings.Split(string(names), "\n")
-	//fmt.Println(names_split[running_device], Volume)
-
-	fmt.Println(icon + " " + Volume)
+	fmt.Println("VOL " + Volume)
 }

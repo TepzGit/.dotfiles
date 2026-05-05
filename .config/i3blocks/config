@@ -35,7 +35,7 @@ interval=repeat
 
 #Keyboard layout
 [keyboard_layout]
-command=echo -e "\uf11c $(setxkbmap -query | grep 'layout' | cut -d ' ' -f 6)"
+command=setxkbmap -query | awk '/layout/ {print "KB " toupper($2)}'
 interval=once
 signal=3
 #color=#f70505
